@@ -1,4 +1,4 @@
-d# eeg_ShellUtilities
+# eeg_ShellUtilities
 
 ## To use these scripts, you will need to have access to a Unix-like terminal. Here's how to get started:
 
