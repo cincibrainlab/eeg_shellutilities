@@ -17,48 +17,53 @@ These commands will search for files in the specified directory and its subdirec
 
 ## Script 1: find_VEP_files.sh
 
-This shell script searches for all files in a directory and its subdirectories that have the extensions "set" or "fdt" and the string "VEP" in the filename. You can specify the directory to search by passing it as an argument when running the script. The script uses the find command to locate the files and prints their paths to the terminal.
+This shell script searches for all files in a directory and its subdirectories that have the extensions "set" or "fdt" and a custom keyword in the filename. You can specify the directory to search and the custom keyword by passing them as arguments when running the script. The script uses the find command to locate the files and prints their paths to the terminal.
 
 To use the script, first save the code below to a file, such as find_VEP_files.sh. Then make the file executable by running chmod +x find_VEP_files.sh. To run the script, specify the directory path as an argument:
 
 ```bash
-./find_VEP_files.sh /path/to/directory
-Here is the code for the script:
+./find_custom_files.sh /path/to/directory custom_keyword
 ```
+
+Here is the code for the script:
 
 ```bash
 #!/bin/bash
 
-### Get the directory path as a command line argument
+# Get the directory path and custom keyword as command line arguments
 dir_path="$1"
+custom_keyword="$2"
 
-### Use find command to locate files with "set" or "fdt" extension and "VEP" in filename
-find "$dir_path" -type f \( -name "*VEP*set" -o -name "*VEP*fdt" \) -print
+# Use find command to locate files with "set" or "fdt" extension and custom keyword in filename
+find "$dir_path" -type f \( -name "*$custom_keyword*set" -o -name "*$custom_keyword*fdt" \) -print
+
 ```
 
 ## Script 2: find_VEP_files_with_subdirs.sh
 
-This shell script is an extension of the previous script, and allows you to search for files only in subdirectories that contain a certain string. You can specify the directory to search and the subdirectory string by passing them as arguments when running the script. The script uses the find command to locate the subdirectories and the files, and prints the paths of the files to the terminal.
+This shell script is an extension of the previous script, and allows you to search for files only in subdirectories that contain a certain string, with a custom keyword in the filename. You can specify the directory to search, the subdirectory string, and the custom keyword by passing them as arguments when running the script. The script uses the find command to locate the subdirectories and the files, and prints the paths of the files to the terminal.
 
-To use the script, first save the code below to a file, such as find_VEP_files_with_subdirs.sh. Then make the file executable by running chmod +x find_VEP_files_with_subdirs.sh. 
-
-To run the script, specify the directory path and subdirectory string as arguments:
+To use the script, first save the code below to a file, such as find_custom_files_with_subdirs.sh. Then make the file executable by running chmod +x find_custom_files_with_subdirs.sh. To run the script, specify the directory path, the subdirectory string, and the custom keyword as arguments:
 
 ```bash
-Copy code
-./find_VEP_files_with_subdirs.sh /path/to/directory subdir_string
+./find_custom_files_with_subdirs.sh /path/to/directory subdir_string custom_keyword
 ```
 
 Here is the code for the script:
 ```bash
-Copy code
 #!/bin/bash
 
-# Get the directory path and subdirectory string as command line arguments
+# Get the directory path, subdirectory string, and custom keyword as command line arguments
 dir_path="$1"
 subdir_string="$2"
+custom_keyword="$3"
 
 # Use find command to locate subdirectories that contain the subdirectory string
-# Then search for files with "set" or "fdt" extension and "VEP" in filename in these subdirectories
-find "$dir_path" -type d -name "*$subdir_string*" -exec sh -c 'find "$0" -type f \( -name "*VEP*set" -o -name "*VEP*fdt" \) -print' {} \;
+# Then search for files with "set" or "fdt" extension and custom keyword in filename in these subdirectories
+find "$dir_path" -type d -name "*$subdir_string*" -exec sh -c 'find "$0" -type f \( -name "*'"$custom_keyword"'*set" -o -name "*'"$custom_keyword"'*fdt" \) -print' {} \;
+
 ```
+
+In these modified scripts, the custom keyword is specified as an additional argument, and it is used in the find command to locate files with the extensions "set" or "fdt" and the custom keyword in the filename. The custom keyword is passed as a shell variable using single quotes around the variable expansion to prevent word splitting.
+
+Now you can use these scripts to search for files with custom keywords in addition to custom file extensions.
