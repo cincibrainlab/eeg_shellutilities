@@ -1,25 +1,25 @@
-# eeg_ShellUtilities
+d# eeg_ShellUtilities
 
 ## To use these scripts, you will need to have access to a Unix-like terminal. Here's how to get started:
 
 Clone or download the repository containing the scripts to your local machine.
 Open a terminal and navigate to the directory containing the scripts.
-Make the scripts executable by running chmod +x find_VEP_files.sh and chmod +x find_VEP_files_with_subdirs.sh.
+Make the scripts executable by running chmod +x find_SET_files.sh and chmod +x find_SET_files_with_subdirs.sh.
 
 To run the scripts, specify the directory path and subdirectory string (for script 2) as arguments. For example:
 
 ```bash
-./find_VEP_files.sh /path/to/directory
-./find_VEP_files_with_subdirs.sh /path/to/directory subdir_string
+./find_SET_files.sh /path/to/directory
+./find_SET_files_with_subdirs.sh /path/to/directory subdir_string
 ```
 
 These commands will search for files in the specified directory and its subdirectories that have the extensions "set" or "fdt" and the string "
 
-## Script 1: find_VEP_files.sh
+## Script 1: find_SET_files.sh
 
 This shell script searches for all files in a directory and its subdirectories that have the extensions "set" or "fdt" and a custom keyword in the filename. You can specify the directory to search and the custom keyword by passing them as arguments when running the script. The script uses the find command to locate the files and prints their paths to the terminal.
 
-To use the script, first save the code below to a file, such as find_VEP_files.sh. Then make the file executable by running chmod +x find_VEP_files.sh. To run the script, specify the directory path as an argument:
+To use the script, first save the code below to a file, such as find_SET_files.sh. Then make the file executable by running chmod +x find_SET_files.sh. To run the script, specify the directory path as an argument:
 
 ```bash
 ./find_custom_files.sh /path/to/directory custom_keyword
@@ -39,7 +39,7 @@ find "$dir_path" -type f \( -name "*$custom_keyword*set" -o -name "*$custom_keyw
 
 ```
 
-## Script 2: find_VEP_files_with_subdirs.sh
+## Script 2: find_SET_files_with_subdirs.sh
 
 This shell script is an extension of the previous script, and allows you to search for files only in subdirectories that contain a certain string, with a custom keyword in the filename. You can specify the directory to search, the subdirectory string, and the custom keyword by passing them as arguments when running the script. The script uses the find command to locate the subdirectories and the files, and prints the paths of the files to the terminal.
 
